@@ -18,7 +18,7 @@
 
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useSockets } from "@/stores/Sockets.ts";
+import { useSockets } from "../stores/Sockets";
 const connect = useSockets();
 
 onMounted(() => {

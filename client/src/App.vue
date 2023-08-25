@@ -1,11 +1,9 @@
 <template>
   <div>
-    <Chat/>
+    <router-view> </router-view>
   </div>
 </template>
-<script lang="ts" setup  >
-import Chat from '@/components/Chat.vue'
-</script>
+<script lang="ts" setup></script>
 
 <style scoped>
 .logo {

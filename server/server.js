@@ -14,6 +14,11 @@ const io = new Server(httpServer, { cors: { origin: '*' }
 io.on('connection', (socket) => {
   console.log('User connected:', socket.id);
 
+  socket.on("joinRoom", (data) => {
+    const { username, roomNumber } = data;
+    socket.join(roomNumber);
+    io.to(roomNumber).emit("userJoined", `${username} присоединился к комнате ${roomNumber}`);
+  });
   socket.on('message', (data) => {
     console.log('Message received:', data);
     io.emit('message', data);

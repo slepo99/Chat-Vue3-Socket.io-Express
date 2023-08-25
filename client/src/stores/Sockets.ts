@@ -6,6 +6,8 @@ export const useSockets = defineStore("sockets", {
     messages: [] as Array<string>,
     newMessage: "" as string,
     socket: null as any,
+    username: '' as string,
+    roomNumber: 0 as number
   }),
   
   actions: {
@@ -20,7 +22,13 @@ export const useSockets = defineStore("sockets", {
         console.error("Ошибка соединения с сокетом:", error.message);
       });
     },
-    
+    joinOrCreateRoom() {
+        // Отправка данных на сервер через событие "joinRoom"
+        this.socket.emit("joinRoom", {
+          username: this.username,
+          roomNumber: this.roomNumber
+        });
+      },
     sendMessage() {
       if (this.newMessage.trim() !== '') {
         this.socket.emit('message', this.newMessage);
